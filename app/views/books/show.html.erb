@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @book.title %></h1>
+  <p class="lead"> 
+    <%= @book.price %>    |
+    <%= @book.category.name %> |
+    <%= @book.isbn %>     |
+    <%= @book.auther %>
+  </p>
+<br/>
+  <h1 class="my-4">
+  <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-secondary" %>
+  <% if current_user.admin? %>
+    <%= link_to 'Requests', requests_path(b_id: @book.id), class:"btn btn-primary" %>
+  <% end %>
+  <%= link_to 'Back', books_path, class:"btn btn-secondary" %>
+
+</div>

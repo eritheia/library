@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Isbn</th>
+      <th>Auther</th>
+      <th>User Id</th>
+      <th colspan="4" style="text-align: center;">Operations</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>  
+      <tr>
+        <td><%= book.price %></td>
+        <td><%= book.category.name %></td>
+        <td><%= book.title %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.auther %></td>
+        <td><%= book.user_id %></td>  
+        <td><%= link_to 'Show', book %></td>
+
+       
+        <% if book.user == current_user %>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+         <% if !book.requests.accepted.any? %>
+          <td><%= link_to 'Request', requests_path(book_id: book.id, user_id: current_user.id), method: :post %>
+        <%end%>
+        
+        <%end%>
+      </tr>
+      
+    <% end %>
+  </tbody>
+</table>
+
+<br>

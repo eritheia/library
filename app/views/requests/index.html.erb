@@ -1,0 +1,27 @@
+<table class="table table-striped table-bordered table-hover">
+	<thead class="thead-dark">
+		<th>Book title</th>
+		<th>Requested by</th>
+		<th>Status</th>
+		<th>Request Time</th>
+		<th>Accept/Reject Time</th>		
+		<th colspan="3" style="text-align: center;">Actions</th>
+
+	</thead>
+	<tbody>
+	      <% @requests.each do |request| %>
+			<tr>
+				<td><%= request.book.title %></td>
+				<td><%= request.user.email %></td>
+				<th><%= request.request_type %></th>
+				<th><%= request.created_at%></th>
+				<th><%= request.updated_at%></th>
+				<td><%= link_to "Accepted", request_action_request_path(request: "accepted", id: request.id) %></td>
+				<td><%= link_to "Rejected", request_action_request_path(id: request.id) %></td>
+				<td><%= link_to "Delete", "/requests/#{request.id}", method: :delete %></td>
+				
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+

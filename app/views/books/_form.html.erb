@@ -1,0 +1,41 @@
+<%= form_with(model: book) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.number_field :price, class:"form-control", placeholder:"price"%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.select(:category_id, options_from_collection_for_select(Category.all, 'id', 'name', '1'), :prompt => "Select a Category") %>
+
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :title, class:"form-control", placeholder:"title" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.number_field :isbn, class:"form-control", placeholder:"isbn" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :auther, class:"form-control", placeholder:"auther" %>
+  </div>
+  <div class="field form-group">
+    <%= form.number_field :user_id, id: :book_user_id, class:"form-control", value:current_user.id, type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>

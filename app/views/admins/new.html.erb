@@ -1,0 +1,6 @@
+<%= form_tag "/admins", method: :post do %>
+	<%= text_field_tag :admin_fname, "", placeholder: "First Name"%>
+	<%= text_field_tag :admin_lname, "", placeholder: "Last Name"%>
+	<%= email_field_tag :admin_email, "", placeholder: "Email"%>
+	<%= submit_tag "Add"%>
+<% end %>

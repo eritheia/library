@@ -1,0 +1,7 @@
+ID: <%= @admin.id%><br>
+<%= form_tag "/admins/#{@admin.id}", method: :put do %>
+  First Name: <%= text_field_tag :admin_fname, @admin.first_name, placeholder: "First Name"%><br>
+  Last Name: <%= text_field_tag :admin_lname, @admin.last_name, placeholder: "Last Name"%><br>
+  Email: <%= @admin.email %><br>
+  <%= submit_tag "Update"%>
+<% end %>

@@ -1,0 +1,34 @@
+
+  <div class="jumbotron">
+  <h1 class="display-4">
+    <h1>Show Reader</h1>
+
+  <div class="card-body">
+    <br/>
+
+ID: <%= @reader.id%><br>
+<%= form_tag "/readers/#{@reader.id}", method: :put do %>
+	First Name: <%= text_field_tag :reader_fname, @reader.first_name, placeholder: "First Name"%><br>
+	Last Name: <%= text_field_tag :reader_lname, @reader.last_name, placeholder: "Last Name"%><br>
+	Email: <%= @reader.email %><br>
+	<%= submit_tag "Update"%>
+<% end %>
+<br/>
+</div>
+</div>
+	<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

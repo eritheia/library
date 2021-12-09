@@ -1,0 +1,7 @@
+ID: <%= @category.id%><br>
+<%= form_tag "/category/#{@category.id}", method: :put do %>
+  Name: <%= text_field_tag :name, @category.name, placeholder: "Name"%><br>
+   <% if current_user.role == "admin" %>
+  <%= submit_tag "Update"%>
+  <%end%>
+<% end %>
