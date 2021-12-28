@@ -1,4 +1,4 @@
 <%= form_tag "/category", method: :post do %>
-  <%= text_field_tag :name, "", placeholder: "Name"%>
+  <%= text_field_tag :name, "", placeholder: "Name", required: true %>
   <%= submit_tag "Add"%>
 <% end %>

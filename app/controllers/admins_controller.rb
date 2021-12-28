@@ -18,38 +18,28 @@ class AdminsController < ApplicationController
     end
 
 	def new 
-
 	end
 
 	def create
-		
 		if User.where(email: params[:admin_email]).first.nil?
 		  admin = User.create(first_name: params[:admin_fname], last_name: params[:admin_lname], email: params[:admin_email], role: 0, password: "123456")
 		end
-		redirect_to admins_path
-	    
+		redirect_to admins_path   
 	end
 
 	def destroy
-		
 		admin = User.find_by_id(params[:id])
 		admin.destroy
 		redirect_to admins_path
-	    
     end
 
 	def show
-		
 		@admin = User.find_by_id(params[:id])
-	    
 	end
+
 	def update
-		
  		admin = User.find_by_id(params[:id])
   		admin.update(first_name: params[:admin_fname], last_name: params[:admin_lname])
 		redirect_to admins_path
-	    
 	end
-
-
 end

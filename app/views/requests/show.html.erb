@@ -4,11 +4,12 @@
 
   <div class="card-body">
     <br/>
-
 ID: <%= @request.id%><br>
 <%= form_tag "/requests/#{@request.id}", method: :put do %>
 	title: <%= text_field_tag :request_title, @request.title, placeholder: "Tilte"%><br>
 	Email: <%= @request.email %><br>
+  Request_Time: <%= request.created_at%>
+  <td> <%= link_to "Return", return_action_request_path(id: request.id), method: :put %></td>
 <% end %>
 <br/>
 </div>

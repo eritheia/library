@@ -3,8 +3,7 @@
 		<th>First Name</th>
 		<th>Last Name</th>
 		<th>Email</th>
-		<th></th>
-		<th></th>
+		<th colspan="2" style="text-align: center;">Operations</th>
 	</thead>
 	<tbody>
 	      <% @readers.each do |reader| %>
@@ -12,11 +11,10 @@
 				<td><%= reader.first_name %></td>
 				<td><%= reader.last_name %></td>
 				<td><%= reader.email %></td>
-				<td><%= link_to "Delete", "/readers/#{reader.id}", method: :delete %></td>
-				<td><%= link_to "Show", "/readers/#{reader.id}", method: :get %></td>
+				<td><%= link_to "Delete", "/readers/#{reader.id}", method: :delete, class:"btn btn-danger btn-sm" %></td>
+				<td><%= link_to "Show", "/readers/#{reader.id}", method: :get, class:"btn btn-primary btn-sm"  %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
-
-<%= link_to "Add New Reader", new_reader_path, class:"btn btn-secondary" %>
+<%= link_to "New Reader", new_reader_path, class:"btn btn-dark " %>

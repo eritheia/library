@@ -4,14 +4,13 @@
   <p class="lead"> 
     <br/>
 <%= form_tag "/readers", method: :post do %>
-	<%= text_field_tag :reader_fname, "", placeholder: "First Name"%>
-	<%= text_field_tag :reader_lname, "", placeholder: "Last Name"%>
-	<%= email_field_tag :reader_email, "", placeholder: "Email"%>
+	<%= text_field_tag :reader_fname, "", placeholder: "First Name", required: true %>
+	<%= text_field_tag :reader_lname, "", placeholder: "Last Name", required: true %>
+	<%= email_field_tag :reader_email, "", placeholder: "Email", required: true %>
 	<%= submit_tag "Add", class:"btn btn-secondary"%>
 <% end %>
 <br/>
 </div>
-
 	<br/>
 
 

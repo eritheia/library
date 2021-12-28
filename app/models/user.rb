@@ -6,4 +6,5 @@ class User < ApplicationRecord
          has_many :books
          enum role:[:admin, :reader]
          has_many :requests
+         has_many :reviews
 end

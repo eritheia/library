@@ -10,7 +10,6 @@ class ReadersController < ApplicationController
 		end
 	end
 
- 
     def check_admin
     	if current_user.role == "admin"
     		true
@@ -19,35 +18,29 @@ class ReadersController < ApplicationController
     	end
     end
 
-	def new
-		
+	def new		
 	end
 
 	def create
-		
 		if User.where(email: params[:reader_email]).first.nil?
 		  reader = User.create(first_name: params[:reader_fname], last_name: params[:reader_lname], email: params[:reader_email], role: 1, password: "123456")
 		end
 		redirect_to readers_path
-	    
 	end
-	def destroy
-		
+
+	def destroy	
 		reader = User.find_by_id(params[:id])
 		reader.destroy
 		redirect_to readers_path
-	    
 	end	
-	def show
-		
+
+	def show	
 		@reader = User.find_by_id(params[:id])
-	   
 	end	
-	def update
-		
+
+	def update	
  		reader = User.find_by_id(params[:id])
   		reader.update(first_name: params[:reader_fname], last_name: params[:reader_lname])
 		redirect_to readers_path
-	    
 	end
 end

@@ -9,14 +9,15 @@
       
       <% if user_signed_in? %>
       <%if current_user.role == "admin"%>
-        <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "Books", books_path, class:"nav-link" %>
       </li>
-       <li class="nav-item">
+
+      <li class="nav-item">
         <%= link_to "Categories", category_index_path, class:"nav-link" %>
       </li>
-
-       <li class="nav-item">
+      
+      <li class="nav-item">
         <%= link_to "Add Books", new_book_path, class:"nav-link" %>
       </li>
 
@@ -24,7 +25,7 @@
         <%= link_to "Add Category", new_category_path, class:"nav-link" %>
       </li>
       
-        <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "Reader", readers_path, class:"nav-link" %>
       </li>
 
@@ -37,7 +38,8 @@
       </li>
       
       <%else%>
-       <li class="nav-item">
+      
+      <li class="nav-item">
         <%= link_to "Categories", category_index_path, class:"nav-link" %>
       </li>
 
@@ -45,10 +47,9 @@
         <%= link_to "Books", books_path, class:"nav-link" %>
       </LI>
 
-       <li class="nav-item">
+      <li class="nav-item">
         <%= link_to "My Books", my_books_books_path, class:"nav-link" %>
       </LI>
- 
  
       <li class="nav-item">
         <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link" %>
@@ -59,25 +60,33 @@
       </li>
       
       <%end%> 
-      
-      
+
       <% else %>
       
-
        <li class="nav-item">
         <%= link_to "Sign in", new_user_session_path, class:"nav-link" %>
-      </li>
+       </li>
        
        <li class="nav-item">
         <%= link_to "Sign up", new_user_registration_path, class:"nav-link" %>
-      </li>
-      <% end %>
-      
-    
+       </li>
+       <% end %>
+       <form class="form-inline my-2 my-lg-0 float-right" style="position: absolute; right: 109px;">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+       </form>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+

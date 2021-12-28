@@ -1,0 +1,9 @@
+</br>
+<div class="card border-success w-75">
+  <div class="card-body text-primary">
+    <p class="card-title text-dark"><%= review.rating %><i class="fas fa-star fa-sm text-warning"></i></p>
+    <h4 class="card-text "><%= review.comment %></h4>
+    <a><%= link_to "Edit", edit_book_review_path(review.book, review), class:"btn btn-outline-primary" %></a>
+    <a><%= link_to "Delete", book_review_path(review.book, review), method: :delete, class:"btn btn-outline-danger", data: { confirm: 'Are you sure?' }%></a>
+  </div>
+</div>
