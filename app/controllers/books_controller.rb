@@ -56,8 +56,7 @@ class BooksController < ApplicationController
      
      respond_to do |format|
          format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
-        format.json { head :no_content }
-        format.js   { render :layout => false }
+         format.js { redirect_to books_url, notice: "Book was successfully destroyed." }
      end 
   end
   def correct_user
