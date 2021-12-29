@@ -22,63 +22,11 @@
         <td><%= book.title %></td>
         <td><%= book.isbn %></td>
         <td><%= book.auther %></td>
-        <td><%= book.user_id %></td>  
-        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Show
-  </button></td>
-
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="jumbotron">
-            <h1 class="display-4"><%= book.title %></h1>
-            <p class="lead"> 
-              <%= book.price %>-PKR |
-              <%= book.category.name %> |
-              <%= book.isbn %>-ISBN   |
-              <%= book.auther %>
-              <h2>Book Rating</h2>
-              <div class="average-review-rating" data-score=<%= @average_review %>></div>
-              <span>Based on <%= book.reviews.count %> Review </span>
-            </p>
-          <br/>
-            <h1 class="my-4">
-            <% if current_user.admin? %>
-              <%= link_to 'Requests', requests_path(b_id: book.id), class:"btn btn-primary" %>
-            <% else %>
-               <% if book.requests.accepted.any? %>
-            <%= link_to "Add Review", new_book_review_path(book), class:"btn btn-secondary"%> <br>
-          <% end %>
-          
-             <%= render book.reviews.order(created_at: :desc) %>
-            
-            <% end %>
-            <br>
-            <%= link_to 'Back', books_path, class:"btn btn-secondary" %>
-          </br>
-          </div>
-                  </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
+        <td><%= book.user_id %></td>
+        <td><%= link_to 'Show', book, class:"btn btn-primary btn-lg" %></td>  
 
         <% if book.user == current_user %>
-        <td><%= link_to 'Edit', edit_book_path(book), class: "btn btn-primary btn-;btn-lg" %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), class: "btn btn-primary btn-lg" %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?'}, :remote => true,  class:"btn btn-danger btn-lg"  %></td>
         <% else %>
          <% if !book.requests.accepted.any? %>
