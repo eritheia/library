@@ -1,3 +1,4 @@
+
 <table class="table table-striped table-bordered table-hover">
 	<thead class="thead-dark">
 		<th scope="col" style="text-align: center;"> Book title</th>
@@ -25,9 +26,12 @@
 				<td><%= link_to "Add Due Date", edit_request_path(id: request.id), class:"btn btn-outline-dark" %></td>
 				<%end%>
 				<td><%= link_to "Return", return_action_book_path(request.book.id), method: :put, class:"btn btn-outline-warning" %></td>
+				<% if !request.accepted? %>
 				<td><%= link_to "Accepted", request_action_request_path(request: "accepted", id: request.id), class:"btn btn-outline-success" %></td>
+				<else>
 				<td><%= link_to "Rejected", request_action_request_path(id: request.id), class:"btn btn-outline-secondary" %></td>
 				<td><%= link_to "Delete", "/requests/#{request.id}", method: :delete, class:"btn btn-outline-danger" %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>

@@ -1,6 +1,14 @@
-<%= link_to reviews_top_books_path do %>
-  <h1><span class="badge badge-secondary" >Top Books</span></h1>
-<% end %>
+ <form class="form-inline my-2 my-lg-0 float-right" style="position: absolute; right: 109px;">
+          <%= search_form_for @q do |f| %>
+          <%= f.search_field :title_cont%>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="f.submit" >Search</button>
+       </form>
+       <%end%>
+
+    <%= link_to reviews_top_books_path do %>
+      <h1><span class="badge badge-secondary" >Top Books</span></h1>
+    <% end %>
+
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>

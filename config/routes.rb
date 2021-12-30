@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :my_books
+      get :search
     end
     resources :reviews
   end

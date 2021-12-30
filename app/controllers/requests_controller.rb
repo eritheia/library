@@ -54,5 +54,9 @@ class RequestsController < ApplicationController
       @request = current_user.requests.find_by(id: params[:id])
       redirect_to books_path, notice: "OOPS! You Are Admin So You Can't Send Request" if @request.nil?
     end
+    if current_user.requests.pluck(:fine).max > 0
+      redirect_to books_path, notice: "OOPS! fine is pending" if @request.nil?
+
+    end
   end
 end

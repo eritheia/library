@@ -4,7 +4,9 @@ class BooksController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.order(created_at: :desc)
+        @q = Book.ransack(params[:q])
+        @books = @q.result
+        #@books = Book.order(created_at: :desc)
   end
 
   def show
@@ -78,6 +80,11 @@ class BooksController < ApplicationController
     end
     request.update(fine: fine)
     redirect_to my_books_books_path, notice: "Book was successfully Returned To Admin"
+  end
+
+  def search
+    @q = Book.ransack(params[:q])
+    @books = @q.result
   end
 
   private

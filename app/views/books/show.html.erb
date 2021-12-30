@@ -15,7 +15,9 @@
     <%= link_to 'Requests', requests_path(b_id: @book.id), class:"btn btn-primary" %>
   <% else %>
      <% if @book.requests.accepted.any? %>
+     <% if current_user.requests.pluck(:book_id).include?(@book.id) %>
   <%= link_to "Add Review", new_book_review_path(@book), class:"btn btn-secondary"%> <br>
+<%end%>
 <% end %>
    <%= render @book.reviews.order(created_at: :desc) %>
   
