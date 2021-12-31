@@ -2,11 +2,14 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
-
+  BOOKS_PER_PAGE = 4
   def index
-        @q = Book.ransack(params[:q])
+        @books = Book.order(created_at: :desc)
+        @q = @books.ransack(params[:q])
         @books = @q.result
-        #@books = Book.order(created_at: :desc)
+        @page = params.fetch(:page, 0).to_i
+        @next_books = @books.offset(@page * BOOKS_PER_PAGE).limit(BOOKS_PER_PAGE + 1)
+        @books = @books.offset(@page * BOOKS_PER_PAGE).limit(BOOKS_PER_PAGE)
   end
 
   def show
