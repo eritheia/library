@@ -1,3 +1,5 @@
+<div> <%= link_to "New Reader", new_reader_path, class:"btn btn-outline-success" %> </div> </br>
+
 <table class="table table-striped table-bordered table-hover">
 	<thead class="thead-dark">
 		<th>First Name</th>
@@ -11,10 +13,9 @@
 				<td><%= reader.first_name %></td>
 				<td><%= reader.last_name %></td>
 				<td><%= reader.email %></td>
-				<td><%= link_to "Delete", "/readers/#{reader.id}", method: :delete, class:"btn btn-danger btn-sm" %></td>
-				<td><%= link_to "Show", "/readers/#{reader.id}", method: :get, class:"btn btn-primary btn-sm"  %></td>
+				<td><%= link_to "Delete", "/readers/#{reader.id}", method: :delete, class:"btn btn-danger btn-lg" %></td>
+				<td><%= link_to "Show", "/readers/#{reader.id}", method: :get, class:"btn btn-primary btn-lg"  %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
-<%= link_to "New Reader", new_reader_path, class:"btn btn-dark " %>
