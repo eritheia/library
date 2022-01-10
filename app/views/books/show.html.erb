@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div>
   <h1 class="display-4"><%= @book.title %></h1>
   <p class="lead"> 
     <%= @book.price %>-PKR |
@@ -8,7 +8,10 @@
     <h2>Book Rating</h2>
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
     <span>Based on <%= @book.reviews.count %> Review </span>
+    <h2>Remaining Return Days</h2>   
+    <h4 class="text-danger "><%= "#{books_alert(@book)} Days" if books_alert(@book).present? %> </h4>
   </p>
+  
 <br/>
   <h1 class="my-4">
   <% if current_user.admin? %>
@@ -23,6 +26,7 @@
   
   <% end %>
   <br>
-  <%= link_to 'Back', books_path, class:"btn btn-secondary" %>
+  <%= link_to 'Back', books_path, class:"btn btn-dark" %>
+
 </br>
 </div>

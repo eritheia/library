@@ -25,7 +25,7 @@
 				<% if request.pending? %>
 				<td><%= link_to "Add Due Date", edit_request_path(id: request.id), class:"btn btn-outline-dark" %></td>
 				<%end%>
-				<td><%= link_to "Return", return_action_book_path(request.book.id), method: :put, class:"btn btn-outline-warning" %></td>
+				<td><%= link_to "Force Return", return_action_book_path(request.book.id), method: :put, class:"btn btn-warning" %></td>
 				<% if !request.accepted? %>
 				<td><%= link_to "Accepted", request_action_request_path(request: "accepted", id: request.id), class:"btn btn-outline-success" %></td>
 				<else>

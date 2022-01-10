@@ -1,0 +1,19 @@
+<div id="popup">
+<h1><div class="form-group m-5">
+ID: <%= @category.id%>
+</div>
+</h1>
+<%= form_tag "/category/#{@category.id}", method: :put do %>
+  Name: <%= text_field_tag :name, @category.name, placeholder: "Name"%>
+   <% if current_user.role == "admin" %> 
+  <%= submit_tag "Update", class:"btn btn-success" %>
+  <%end%>
+<% end %>
+</div>
+
+
+
+
+
+
+

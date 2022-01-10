@@ -85,10 +85,7 @@ class BooksController < ApplicationController
     redirect_to my_books_books_path, notice: "Book was successfully Returned To Admin"
   end
 
-  def search
-    @q = Book.ransack(params[:q])
-    @books = @q.result
-  end
+ 
 
   private
     def set_book

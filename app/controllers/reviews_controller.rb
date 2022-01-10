@@ -38,6 +38,7 @@ class ReviewsController < ApplicationController
 			book.reviews.each do |review|
 				@rating = review.rating.to_i
 				 rating << @rating
+				 
 			end
 			rating.compact!
 			@length = rating.length

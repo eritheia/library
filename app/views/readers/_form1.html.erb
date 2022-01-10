@@ -1,0 +1,15 @@
+<div class="form-group text-center mx-auto" id="popup">
+  <h1 class="display-4">
+  <h1>ID: <%= @reader.id%><br></h1>
+    	<h2><p>  Email: <%= @reader.email %> </p></h2>
+<%= form_tag "/readers/#{@reader.id}", method: :put do %>
+	First Name: <%= text_field_tag :reader_fname, @reader.first_name, placeholder: "First Name"%><br>
+	Last Name: <%= text_field_tag :reader_lname, @reader.last_name, placeholder: "Last Name"%><br>
+	<br>
+	<div class="ml-5">
+    <button type="submit_tag" class="btn btn-primary">Update</button>
+    </div>
+<% end %>
+<br/>
+</div>
+	

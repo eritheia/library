@@ -1,21 +1,25 @@
-<table class="table table-striped table-bordered table-hover ">
-  <thead class="thead-dark">
-    <tr>
-      <th colspan="1">Name</th>
-      <th colspan="3" style="text-align: center;">Operations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @category.each do |category| %>
-      <tr>
-        <td><h4><%= category.name %></h4></td>
-        <td><%= link_to 'Show', category, class:"btn btn-primary btn-lg" %></td>
-        <% if current_user.role == "admin" %>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-lg" %></td>
-        <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div> <%= link_to "New Category", new_category_path, remote: true, class:"btn btn-outline-success" %> </div> </br>
+<div id='new'></div>
+<table class="table table-striped table-bordered table-hover "> 
+  <thead
+class="thead-dark"> <tr> <th colspan="1">Name</th> <th colspan="3" style="text-align: center;">Operations</th> </tr> 
+</thead> 
+<tbody>
+<% @category.each do |category| %> <tr> <td><h4><%= category.name %></h4></td>
+
+  
+
+<td><%= link_to 'Show', category, remote: true, class:"btn btn-primary btn-lg", id:"show_button" %> 
+</td>
+
+
+<% if current_user.role == "admin" %> <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you
+sure?' }, class:"btn btn-danger btn-lg" %></td> 
+<%end%> 
+</tr>
+<% end %>
+</tbody> 
+</table> 
 <br>
 
+<div id='show_div'></div>
