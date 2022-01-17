@@ -1,23 +1,12 @@
-</br>
- <div class="jumbotron">
-  <h1 class="display-4">
-    <h1>New Review</h1>
-  <p class="lead"> 
+
+<div class=" text-dark d-none " id="add_review_form">
+  
+    <h4>New Review</h4> 
     <br/>
-<%= simple_form_for([@book, @book.reviews.build]) do |f|%>
-	<%= f.select :rating, ['1', '2', '3', '4', '5']%>
-	<%= f.text_field :comment, autofocus: true, placeholder: "Commment", :required => 'required'%>
-	<%= f.button :submit, class:"btn btn-secondary"%>
-<% end %>
+      <%= form_for([@book, @book.reviews.build], remote: true)  do |f|%>
+     <h4> <%= f.select :rating, ['1', '2', '3', '4', '5'], {:class => "form-control"}%> </h4>
+      <h4> <%= f.text_field :comment, autofocus: true, placeholder: "Commment", :required => 'required'%>  </h4>
+      <%= f.button :submit, class:"btn btn-secondary"%>
+      <% end %> 
 <br/>
 </div>
-<br/>
-
-
-
-
-
-
-
-
-

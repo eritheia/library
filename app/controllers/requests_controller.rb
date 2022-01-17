@@ -12,6 +12,10 @@ class RequestsController < ApplicationController
   end
 
   def new
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def create
@@ -57,6 +61,9 @@ class RequestsController < ApplicationController
     if current_user.requests.pluck(:fine).max > 0
       redirect_to books_path, notice: "OOPS! fine is pending" if @request.nil?
 
+    end
+    if Request.where(user_id: params[:user_id], book_id: params[:book_id]).each(&:pending!).any?
+      redirect_to books_path, notice: "You Already Sent The Request Against This Book"
     end
   end
 end

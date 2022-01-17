@@ -1,3 +1,2 @@
-$('.delete_book').bind('ajax:success', function() {
-   $(this).closest('tr').fadeOut();
-});
+var element = document.getElementById("<%=j @book.id %>");
+element.style.display = "none";

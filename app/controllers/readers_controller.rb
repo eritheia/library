@@ -4,9 +4,12 @@ class ReadersController < ApplicationController
 
 	def index
 		if current_user.role == "admin"
-			@readers = User.reader
+			@readers = User.reader.order(created_at: :desc)
 		else
-			redirect_to root_path
+			respond_to do |format|
+		 format.js { redirect_to readers_path, notice: "Reader was successfully added." }
+		 format.html { redirect_to readers_path, notice: "Reader was successfully added." }
+		end
 		end
 	end
 
@@ -18,29 +21,57 @@ class ReadersController < ApplicationController
     	end
     end
 
-	def new		
+	def new	
+		@reader = User.new(role: 'reader')
+		respond_to do |format|
+			format.js
+			format.html
+		end	
 	end
 
 	def create
+
 		if User.where(email: params[:reader_email]).first.nil?
-		  reader = User.create(first_name: params[:reader_fname], last_name: params[:reader_lname], email: params[:reader_email], role: 1, password: "123456")
+		  reader = User.new(reader_params)
+		  reader.password = "123456"
+		  reader.role = "reader"
+		  if reader.save
+		  	redirect_to readers_path
+		  else
+		  	render :new
+		  end
 		end
-		redirect_to readers_path
+		# respond_to do |format|
+		#  format.js { redirect_to readers_path, notice: "Reader was successfully added." }
+		#  format.html { redirect_to readers_path, notice: "Reader was successfully added." }
+		# end
 	end
 
 	def destroy	
 		reader = User.find_by_id(params[:id])
 		reader.destroy
-		redirect_to readers_path
+		respond_to do |format|
+         format.js { redirect_to readers_path, notice: "Reader was successfully destroyed." }
+         format.html { redirect_to readers_path, notice: "Reader was successfully destroyed." }
+     end 
 	end	
 
 	def show	
 		@reader = User.find_by_id(params[:id])
+		respond_to do |format|
+			format.js
+			format.html
+		end
 	end	
 
 	def update	
  		reader = User.find_by_id(params[:id])
-  		reader.update(first_name: params[:reader_fname], last_name: params[:reader_lname])
+  		reader.update(reader_params)
 		redirect_to readers_path
 	end
+
+	private
+	  def reader_params
+      params.require(:user).permit(:first_name, :last_name, :email)
+      end
 end
