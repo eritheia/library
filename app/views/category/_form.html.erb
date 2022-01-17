@@ -1,4 +1,9 @@
-<%= form_tag "/category", method: :post do %>
-  <%= text_field_tag :name, "", placeholder: "Name", required: true %>
-  <%= submit_tag "Add", class:"btn btn-success"%>
-<% end %>
+<div class="modal-body">
+    <%= form_for category, url: category_index_path, remote: true do |f| %>
+    <%= f.text_field :name, placeolder: "Name", required: true %>
+    <%= f.submit "Add", class:"btn btn-success"%>
+  <%end%>
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  </div>

@@ -22,7 +22,7 @@ class ReadersController < ApplicationController
     end
 
 	def new	
-		@user = User.new
+		@reader = User.new(role: 'reader')
 		respond_to do |format|
 			format.js
 			format.html
@@ -30,13 +30,21 @@ class ReadersController < ApplicationController
 	end
 
 	def create
+
 		if User.where(email: params[:reader_email]).first.nil?
-		  reader = User.create(first_name: params[:reader_fname], last_name: params[:reader_lname], email: params[:reader_email], role: 1, password: "123456")
+		  reader = User.new(reader_params)
+		  reader.password = "123456"
+		  reader.role = "reader"
+		  if reader.save
+		  	redirect_to readers_path
+		  else
+		  	render :new
+		  end
 		end
-		respond_to do |format|
-		 format.js { redirect_to readers_path, notice: "Reader was successfully added." }
-		 format.html { redirect_to readers_path, notice: "Reader was successfully added." }
-		end
+		# respond_to do |format|
+		#  format.js { redirect_to readers_path, notice: "Reader was successfully added." }
+		#  format.html { redirect_to readers_path, notice: "Reader was successfully added." }
+		# end
 	end
 
 	def destroy	
@@ -58,7 +66,12 @@ class ReadersController < ApplicationController
 
 	def update	
  		reader = User.find_by_id(params[:id])
-  		reader.update(first_name: params[:reader_fname], last_name: params[:reader_lname])
+  		reader.update(reader_params)
 		redirect_to readers_path
 	end
+
+	private
+	  def reader_params
+      params.require(:user).permit(:first_name, :last_name, :email)
+      end
 end

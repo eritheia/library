@@ -1,9 +1,1 @@
-$("#show_div").html("<%= j(render 'form1') %>")
-$(document).ready(function() {
-    $('#show_button').on(function() {
-        $('#popup').show();
-    }, function() {
-        $('#popup').hide();
-    });
-});
-
+$("#showUserForm").html("<%= j(render 'form1', category: @category) %>")

@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron bg-light text-dark">
   <h1 class="display-4">
     <h1>My Books</h1>
   <div class="card-body">
@@ -8,6 +8,7 @@ ID: <%= @request.id%><br>
 	title: <%= text_field_tag :request_title, @request.title, placeholder: "Tilte"%><br>
 	Email: <%= @request.email %><br>
   Request_Time: <%= request.created_at%>
+  
   <td> <%= link_to "Return", return_action_request_path(id: request.id), method: :put %></td>
 <% end %>
 <br/>

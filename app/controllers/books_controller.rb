@@ -12,58 +12,57 @@ class BooksController < ApplicationController
         @books = @books.offset(@page * BOOKS_PER_PAGE).limit(BOOKS_PER_PAGE)
   end
 
-  def show
+  def show    
     if @book.reviews.blank?
       @average_review = 0
     else
       @average_review = @book.reviews.average(:rating).round(2)
     end
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def new
     @book = current_user.books.build
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def edit
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def create
      @book = current_user.books.build(book_params)
-    respond_to do |format|
       if @book.save
-        format.js
-        format.html { redirect_to @book, notice: "Book was successfully created." }
-        format.json { render :show, status: :created, location: @book }
+        redirect_to books_path
+        #format.json { render :show, status: :created, location: @book }
       else
-        format.js
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        render :new
+        #format.json { render json: @book.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   def update
-    respond_to do |format|
-      book = Book.find_by_id(params[:id])
-      if book.update(book_params)
-        format.html { redirect_to @book, notice: "Book was successfully updated." }
-        format.json { render :show, status: :ok, location: @book }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
+       @book.update(book_params)
+        redirect_to books_path
   end
 
   def destroy
-
      @book.destroy
-     
      respond_to do |format|
          format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
-         format.js { redirect_to books_url, notice: "Book was successfully destroyed." }
+         format.js 
      end 
   end
+  
   def correct_user
     @book = current_user.books.find_by(id: params[:id])
     redirect_to books_path, notice: "OOPS! Not Authorized To Edit This Book" if @book.nil?

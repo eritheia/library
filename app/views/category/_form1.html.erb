@@ -1,19 +1,16 @@
-<div id="popup">
-<h1><div class="form-group m-5">
-ID: <%= @category.id%>
-</div>
-</h1>
-<%= form_tag "/category/#{@category.id}", method: :put do %>
-  Name: <%= text_field_tag :name, @category.name, placeholder: "Name"%>
-   <% if current_user.role == "admin" %> 
-  <%= submit_tag "Update", class:"btn btn-success" %>
+<div class="modal-body">
+  <h1>
+    <div class="form-group m-5">
+      ID: <%= @category.id%>
+    </div>
+  </h1>
+    <%= form_for category, url: category_path(@category), remote: true do |f| %>
+    <%= f.text_field :name, placeolder: "Name", required: true %>
+    <% if current_user.role == "admin" %> 
+    <%= f.submit "Update", class:"btn btn-success" %>
   <%end%>
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  </div>
 <% end %>
-</div>
-
-
-
-
-
-
-

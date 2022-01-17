@@ -1,13 +1,50 @@
 </br>
-<div class="card border-success w-75">
+<div class="card border-success w-75" id="<%= review.id %>">
   <div class="card-body text-primary">
     <p class="card-title text-dark"><%= review.rating %><i class="fas fa-star fa-sm text-warning"></i></p>
     <h4 class="card-text "><%= review.comment %></h4>
-    <% if current_user && current_user == review.user %>
-    <a><%= link_to "Edit", edit_book_review_path(review.book, review), class:"btn btn-outline-primary" %></a>
-    <a><%= link_to "Delete", book_review_path(review.book, review), method: :delete, class:"btn btn-outline-danger", data: { confirm: 'Are you sure?' }%></a>
-    <%else%>
 
+    <% if current_user && current_user == review.user %>
+    <a><%= link_to "Edit","javascript:void(0)", class:"btn btn-outline-primary", onclick: "edit_form()" %></a>
+
+    <a><%= link_to "Delete", book_review_path(review.book, review), method: :delete, :remote => true, class:"btn btn-outline-danger", data: { confirm: 'Are you sure?' }%></a>
+
+
+
+  </br>
+ <div class="text-dark d-none" id="edit_review_form">
+  <br>
+  <h1 class="display-4">
+    <h1>Edit Review</h1>
+  <p class="lead"> 
+    <br/>
+
+  <%= form_for([@book, review], remote: true) do |f| %>
+  <h4>
+  <%= f.select :rating, ['1', '2', '3', '4', '5'] %>
+  </h4>
+  <h4>
+  <%= f.text_field :comment, autofocus: true, placeholder: "Commment", :required => 'required' %>
+</h4>
+  <%= f.button :submit, class:"btn btn-secondary"%>
+<% end %>
+<br/>
+</div>
+<br/>
+
+
+    <%else%>
     <%end%>
   </div>
 </div>
+
+
+
+
+
+
+<script>
+  function edit_form(){
+    $("#edit_review_form").removeClass("d-none")
+  }
+</script>

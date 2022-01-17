@@ -1,6 +1,17 @@
-<%= form_tag "/readers", method: :post do %>
-	<%= text_field_tag :reader_fname, "", placeholder: "First Name", required: true %>
-	<%= text_field_tag :reader_lname, "", placeholder: "Last Name", required: true %>
-	<%= email_field_tag :reader_email, "", placeholder: "Email", required: true %>
-	<%= submit_tag "Add", class:"btn btn-success"%>
-<% end %>
+<div class="modal-body">
+	<%= form_for @reader, url: readers_path, remote: true do |f| %>
+	<%= f.text_field :first_name, placeholder: "First Name", required: true %>
+	<%= f.text_field :last_name, placeholder: "Last Name", required: true %>
+	<%= f.email_field :email, placeholder: "Email", required: true %>
+	<%= f.submit "Add", class:"btn btn-success"%>
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  </div>
+  <% end %> 
+
+
+
+
+
+ 

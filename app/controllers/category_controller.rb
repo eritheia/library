@@ -30,15 +30,21 @@ class CategoryController < ApplicationController
     end
   end
 
-  def create    
-    @category = Category.create(name:params[:name])
-    redirect_to category_index_path
+  def create
+    @category = Category.create(name: params[:category][:name])
+    respond_to do |format|
+      format.js {redirect_to category_index_path, notice: "Category was Created successfully "}
+      format.html {redirect_to category_index_path, notice: "Category was Created successfully"}
+    end
   end
 
   def update
     @category = Category.find_by_id(params[:id])
-    @category.update(name: params[:name])
-    redirect_to category_index_path
+    @category.update(name: params[:category][:name])
+    respond_to do |format|
+    format.js {redirect_to category_index_path, notice: "Category was updated successfully"}
+    format.html {redirect_to category_index_path, notice: "Category was updated successfully"} 
+  end
   end
 
   def destroy

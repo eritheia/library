@@ -1,7 +1,7 @@
 module BooksHelper
 	def books_alert(book)
 		req = book.requests.where(user_id: current_user.id).last
-		return unless req.present?
+		return if req.nil? || req.due_date.nil?
        	if req.due_date < Date.today
 		'Your Book Return Date Is Overdue'
 		else

@@ -62,5 +62,8 @@ class RequestsController < ApplicationController
       redirect_to books_path, notice: "OOPS! fine is pending" if @request.nil?
 
     end
+    if Request.where(user_id: params[:user_id], book_id: params[:book_id]).each(&:pending!).any?
+      redirect_to books_path, notice: "You Already Sent The Request Against This Book"
+    end
   end
 end
